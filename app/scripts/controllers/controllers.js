@@ -2,17 +2,29 @@
 
 /* Controllers */
 
-var phonecatApp = angular.module('phonecatApp', []);
+var phonecatControllers = angular.module('phonecatControllers', []);
 
-phonecatApp.controller('PhoneListCtrl', function ($scope) {
-  $scope.phones = [
-    {'name': 'Nexus S',
-     'snippet': 'Fast just got faster with Nexus S.'},
-    {'name': 'Motorola XOOM™ with Wi-Fi',
-     'snippet': 'The Next, Next Generation tablet.'},
-    {'name': 'MOTOROLA XOOM™',
-     'snippet': 'The Next, Next Generation tablet.'}
-  ];
-
+phonecatControllers.controller('PhoneListCtrl', ['$scope', '$http', function ($scope, $http) {
+  var promise = $http.get('phones/phones.json');
+  promise.success(function(data){
+    $scope.phones = data;
+  });
   $scope.name = 'World';
-});
+  $scope.orderProp = 'age';
+}]);
+
+phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http){
+
+  $http.get('phones/' + $routeParams.phoneId + '.json').success(function(data){
+    $scope.phone = data;
+    console.log('$scope.phone = ', $scope.phone);
+    $scope.mainImageUrl = data.images[0];
+  });
+
+  $scope.setImage = function(img){
+    $scope.mainImageUrl = img;
+  };
+
+  $scope.phoneId = $routeParams.phoneId;
+  console.log('outside success $scope.phone = ', $scope.phone);
+}]);

@@ -23,5 +23,17 @@ describe('PhoneCat App', function() {
       query.sendKeys('motorola');
       expect(phoneList.count()).toBe(2);
     });
+
+    // it('should display search text in the page title', function(){
+    //   var statusElement = element(by.id('status'));
+    //   expect(statusElement.getText()).toMatch(/Current filter: \s*$/);
+
+    //   element(by.model('query')).sendKeys('nexus');
+
+    //   expect(statusElement.getText()).toMatch(/Current filter: nexus\s*$/);
+
+    //   //alternative version of the last assertion that tests just the value of the binding
+    //   expect(statusElement.element(by.binding('query'))).toBe('nexus');
+    // });
   });
 });

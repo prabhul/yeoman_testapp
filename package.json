@@ -56,12 +56,15 @@
     "grunt-env": "~0.4.1",
     "grunt-node-inspector": "~0.1.3",
     "grunt-nodemon": "~0.2.0",
-    "open": "~0.0.4"
+    "open": "~0.0.4",
+    "protractor": "0.20.1"
   },
   "engines": {
     "node": ">=0.10.0"
   },
   "scripts": {
+    "pretest": "./node_modules/protractor/bin/webdriver-manager update",
+    "testrun": "echo something",
     "test": "grunt test"
   }
 }
